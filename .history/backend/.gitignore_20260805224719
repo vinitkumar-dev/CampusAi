@@ -26,8 +26,6 @@ instance/
 *.log
 logs/
 
-data/
-
 # OS Files
 .DS_Store
 Thumbs.db
