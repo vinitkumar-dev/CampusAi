@@ -1,0 +1,210 @@
+/* ==========================================================
+   CAMPUS AI PREMIUM CREATE COMPLAINT PAGE
+========================================================== */
+
+:root {
+  --text-main: #0f172a;
+  --text-sub: #64748b;
+  --border-element: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-panel: #f8fafc;
+  --ai-purple-gradient: linear-gradient(135deg, #7c3aed, #2563eb);
+  --transition-speed: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.create-page {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+}
+
+/* ==========================================================
+   HEADER ACTIONS BAR
+========================================================== */
+
+.create-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-element);
+  padding-bottom: 20px;
+}
+
+.create-header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.create-header p {
+  margin: 4px 0 0 0;
+  font-size: 0.9rem;
+  color: var(--text-sub);
+}
+
+/* AI Pill Badge Indicator */
+.ai-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 0.08),
+    rgba(37, 99, 235, 0.08)
+  );
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  color: #6d28d9;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.sparkle-pulse {
+  animation: pulse-glow 2s infinite alternate;
+}
+
+@keyframes pulse-glow {
+  from {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================
+   PAGE LAYOUT GRID ARCHITECTURE
+========================================================== */
+
+.create-complaint-page-layout {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.left-section {
+  width: 100%;
+}
+
+.right-section {
+  width: 100%;
+  position: sticky;
+  top: 24px;
+}
+
+/* ==========================================================
+   AI ENGINE SIDEBAR HOVER STATES (PLACEHOLDER/LOADING)
+========================================================== */
+
+/* Assistant Default State */
+.ai-placeholder {
+  background: var(--bg-card);
+  border: 1px dashed #cbd5e1;
+  border-radius: 20px;
+  padding: 48px 32px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.placeholder-icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--bg-panel);
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  border: 1px solid var(--border-element);
+}
+
+.ai-placeholder h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.ai-placeholder p {
+  margin: 8px 0 0 0;
+  font-size: 0.88rem;
+  color: var(--text-sub);
+  line-height: 1.5;
+  max-width: 320px;
+}
+
+/* Assistant Loading Ring State */
+.prediction-loading {
+  background: var(--bg-card);
+  border: 1px solid var(--border-element);
+  border-radius: 20px;
+  padding: 56px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.01);
+}
+
+.ai-loader-ring {
+  width: 36px;
+  height: 36px;
+  border: 3.5px solid var(--bg-panel);
+  border-top: 3.5px solid #7c3aed;
+  border-left: 3.5px solid #3b82f6;
+  border-radius: 50%;
+  animation: dual-spinner 0.85s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.prediction-loading p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-sub);
+}
+
+@keyframes dual-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+========================================================== */
+
+@media (max-width: 1024px) {
+  .create-complaint-page-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .right-section {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .create-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .ai-placeholder {
+    padding: 36px 20px;
+  }
+}

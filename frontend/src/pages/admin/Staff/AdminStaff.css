@@ -1,0 +1,425 @@
+:root {
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --bg-page: #f9fafb;
+  --bg-card: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --border-color: #e5e7eb;
+  --danger-color: #ef4444;
+  --danger-hover: #dc2626;
+  --success-color: #10b981;
+}
+
+/* Page Viewport & Containers */
+.admin-staff-page-root-viewport {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  background-color: var(--bg-page);
+  min-height: 100vh;
+}
+
+/* Header Panel */
+.staff-identity-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 1.5rem;
+}
+
+.identity-meta-stack h1 {
+  font-size: 1.75rem;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+}
+
+.identity-meta-stack p {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Trigger Button */
+.staff-add-trigger-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.staff-add-trigger-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Search Controls */
+.staff-telemetry-controls-strip {
+  margin-bottom: 2rem;
+}
+
+.staff-search-input-field-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+.search-decorator-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+.staff-interactive-search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.staff-interactive-search-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* Loading Viewport */
+.staff-loading-viewport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 1rem;
+}
+
+.staff-spin-loader {
+  animation: spin 1s linear infinite;
+  color: var(--primary-color);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.staff-loading-viewport h3 {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Card Grid System */
+.staff-allocation-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.staff-profile-node-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  position: relative;
+}
+
+.staff-profile-node-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Avatar Initials */
+.staff-avatar-initials-badge {
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: #e0e7ff;
+  color: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Name & Title */
+.staff-meta-identity-block h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.staff-functional-role-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--primary-color);
+  background-color: #eef2ff;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  margin-bottom: 1.25rem;
+}
+
+/* Telemetry list */
+.staff-contact-telemetry-stack {
+  width: 100%;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 0;
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.telemetry-item-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.telemetry-item-row svg {
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.telemetry-item-row span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  text-align: left;
+}
+
+/* Action Rows */
+.staff-actions-commit-row {
+  display: flex;
+  width: 100%;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.action-pill-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  border: 1px solid var(--border-color);
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.action-pill-btn.variant-edit {
+  color: var(--text-secondary);
+}
+
+.action-pill-btn.variant-edit:hover {
+  background-color: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.action-pill-btn.variant-delete {
+  color: var(--danger-color);
+}
+
+.action-pill-btn.variant-delete:hover {
+  background-color: #fef2f2;
+  border-color: #fecaca;
+}
+
+/* Empty Registry Intercept */
+.staff-empty-intercept-viewport {
+  background-color: var(--bg-card);
+  border: 1px dashed #d1d5db;
+  border-radius: 0.75rem;
+  padding: 4rem 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.intercept-alignment-shield {
+  max-width: 400px;
+}
+
+.intercept-icon-decor {
+  color: #9ca3af;
+  margin-bottom: 1rem;
+}
+
+.intercept-alignment-shield h4 {
+  font-size: 1.15rem;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.intercept-alignment-shield p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Modal Overlay & Card System */
+.staff-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.staff-modal {
+  background-color: var(--bg-card);
+  border-radius: 0.75rem;
+  width: 100%;
+  max-width: 450px;
+  padding: 2rem;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  animation: modalEnter 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.staff-modal h2 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.35rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.75rem;
+}
+
+.staff-modal .form-group {
+  margin-bottom: 1rem;
+}
+
+.staff-modal label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.05em;
+}
+
+.staff-modal input {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.staff-modal input:focus {
+  border-color: var(--primary-color);
+}
+
+/* Modal action controllers */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.modal-btn-cancel {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.modal-btn-cancel:hover {
+  background-color: #f3f4f6;
+}
+
+.modal-btn-save {
+  background-color: var(--primary-color);
+  border: none;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.modal-btn-save:hover {
+  background-color: var(--primary-hover);
+}
+
+.modal-btn-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

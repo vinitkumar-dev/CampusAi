@@ -1,0 +1,77 @@
+/* ==============================
+   DASHBOARD LAYOUT
+============================== */
+
+.dashboard-layout {
+  display: flex;
+
+  width: 100%;
+
+  min-height: 100vh;
+
+  background: #f8fafc;
+
+  overflow-x: hidden;
+}
+
+.dashboard-main {
+  flex: 1;
+
+  width: calc(100% - 292px);
+
+  margin-left: 292px;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+/* ==============================
+   OUTLET WRAPPER
+============================== */
+
+.dashboard-page-content {
+  flex: 1;
+
+  width: 100%;
+
+  margin-top: 78px;
+
+  padding: 32px;
+
+  box-sizing: border-box;
+
+  display: block !important;
+
+  overflow-x: auto;
+}
+
+/*
+  Prevent child restriction
+*/
+
+.dashboard-page-content > * {
+  width: 100% !important;
+
+  max-width: none !important;
+}
+
+/* ==============================
+ MOBILE
+============================== */
+
+@media (max-width: 768px) {
+  .dashboard-main {
+    width: 100%;
+
+    margin-left: 0;
+  }
+
+  .dashboard-page-content {
+    padding: 16px;
+  }
+}

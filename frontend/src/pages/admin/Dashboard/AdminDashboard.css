@@ -1,0 +1,371 @@
+/* ==========================================================
+   CAMPUS AI PREMIUM ADMINISTRATION CONTROL PANEL PLATFORM
+========================================================== */
+
+:root {
+  --text-main: #0f172a;
+  --text-sub: #64748b;
+  --border-element: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-panel: #f8fafc;
+  --primary-indigo: #4f46e5;
+  --primary-hover: #4338ca;
+  --focus-ring: rgba(79, 70, 229, 0.15);
+  --transition-speed: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Telemetry Branding Variables Accent Map */
+  --b-core: #3b82f6;   --b-bg: #eff6ff;   --b-edge: #bfdbfe;
+  --o-core: #f97316;   --o-bg: #fff7ed;   --o-edge: #ffedd5;
+  --p-core: #8b5cf6;   --p-bg: #f5f3ff;   --p-edge: #ddd6fe;
+  --g-core: #10b981;   --g-bg: #ecfdf5;   --g-edge: #d1fae5;
+  --t-core: #06b6d4;   --t-bg: #ecfeff;   --t-edge: #cffafe;
+  --i-core: #6366f1;   --i-bg: #e0e7ff;   --i-edge: #c7d2fe;
+}
+
+.admin-dashboard-root-viewport {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================
+   UPPER MAINFRAME IDENTITY AND CONTROL STRIP INTERFACE
+========================================================== */
+
+.dashboard-identity-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border-element);
+  margin-bottom: 32px;
+  gap: 16px;
+}
+
+.identity-meta-stack h1 {
+  margin: 0;
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.identity-meta-stack p {
+  margin: 6px 0 0 0;
+  font-size: 0.9rem;
+  color: var(--text-sub);
+}
+
+.dashboard-sync-trigger-btn {
+  background: #ffffff;
+  border: 1px solid var(--border-element);
+  color: #475569;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all var(--transition-speed);
+}
+
+.dashboard-sync-trigger-btn:hover:not(:disabled) {
+  background: var(--bg-panel);
+  border-color: #cbd5e1;
+  color: var(--text-main);
+}
+
+.dashboard-sync-trigger-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==========================================================
+   METRIC SUMMARY GRID DISPLAY MATRIX
+========================================================== */
+
+.dashboard-telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 36px;
+}
+
+.telemetry-metric-node-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-element);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.01);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.telemetry-metric-node-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+}
+
+.metric-icon-bounding-shield {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.metric-numerical-stack h2 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.metric-label-string {
+  margin: 4px 0 0 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.metric-micro-desc {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.76rem;
+  color: var(--text-sub);
+  font-weight: 500;
+}
+
+/* Binding Handshakes dynamic context maps */
+.card-blue .metric-icon-bounding-shield { background: var(--b-bg); color: var(--b-core); border: 1px solid var(--b-edge); }
+.card-orange .metric-icon-bounding-shield { background: var(--o-bg); color: var(--o-core); border: 1px solid var(--o-edge); }
+.card-purple .metric-icon-bounding-shield { background: var(--p-bg); color: var(--p-core); border: 1px solid var(--p-edge); }
+.card-green .metric-icon-bounding-shield { background: var(--g-bg); color: var(--g-core); border: 1px solid var(--g-edge); }
+.card-teal .metric-icon-bounding-shield { background: var(--t-bg); color: var(--t-core); border: 1px solid var(--t-edge); }
+.card-indigo .metric-icon-bounding-shield { background: var(--i-bg); color: var(--i-core); border: 1px solid var(--i-edge); }
+
+/* ==========================================================
+   COMPOSITE ANALYSIS DATA SPLIT LAYOUT
+========================================================== */
+
+.dashboard-split-composite-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.composite-analysis-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-element);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.01);
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+}
+
+.composite-panel-header-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--border-element);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.panel-accent-decor-icon {
+  color: var(--primary-indigo);
+}
+
+.composite-panel-header-row h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* Internal System Metrics Progress Bars components */
+.efficiency-breakdown-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.efficiency-metric-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.efficiency-meta-strings {
+  display: flex;
+  flex-direction: column;
+}
+
+.eff-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.eff-desc {
+  font-size: 0.8rem;
+  color: var(--text-sub);
+  margin-top: 2px;
+}
+
+.eff-percentage-pill {
+  font-size: 1.1rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 8px;
+}
+.eff-percentage-pill.stable { background: var(--g-bg); color: var(--g-core); }
+.eff-percentage-pill.warning { background: var(--o-bg); color: var(--o-core); }
+.eff-percentage-pill.critical { background: var(--red-bg); color: var(--red-primary); }
+
+.systemic-progress-track-wrapper {
+  width: 100%;
+  height: 8px;
+  background: #f1f5f9;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.systemic-progress-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fill-stable { background: var(--g-core); }
+.fill-warning { background: var(--o-core); }
+.fill-critical { background: #ef4444; }
+
+.efficiency-informational-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 12px;
+  background: var(--bg-panel);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border-element);
+}
+
+.info-node {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-node-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-sub);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.info-node-value {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================
+   EMPTY PIPELINE VIEWPORT INTERCEPTS MODULES
+========================================================== */
+
+.composite-empty-intercept-viewport {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0;
+}
+
+.intercept-alignment-shield {
+  text-align: center;
+  max-width: 280px;
+}
+
+.intercept-icon-decor {
+  color: #cbd5e1;
+  margin-bottom: 12px;
+}
+
+.intercept-alignment-shield h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.intercept-alignment-shield p {
+  margin: 6px 0 0 0;
+  font-size: 0.82rem;
+  color: var(--text-sub);
+  line-height: 1.4;
+}
+
+/* Mainframe Global Viewport Spinner Layouts */
+.dashboard-loading-viewport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 24px;
+  gap: 16px;
+}
+
+.dashboard-spin-loader {
+  animation: dashboard-spin-kf 0.8s linear infinite;
+  color: var(--primary-indigo);
+}
+
+.dashboard-loading-viewport h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-sub);
+}
+
+@keyframes dashboard-spin-kf {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================
+   RESPONSIVE DESIGN BREAKPOINT RECONFIGURATIONS
+========================================================== */
+
+@media (max-width: 992px) {
+  .dashboard-split-composite-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-identity-panel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .dashboard-sync-trigger-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

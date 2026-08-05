@@ -1,0 +1,471 @@
+/* ==========================================================
+   CAMPUS AI PREMIUM ADMINISTRATIVE COMMAND DASHBOARD SHEET
+========================================================== */
+
+:root {
+  --text-main: #0f172a;
+  --text-sub: #64748b;
+  --border-element: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-panel: #f8fafc;
+  --primary-indigo: #4f46e5;
+  --primary-hover: #4338ca;
+  --focus-ring: rgba(79, 70, 229, 0.15);
+  --transition-speed: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* State Accents Color Matrix */
+  --priority-high: #ef4444;
+  --priority-medium: #f59e0b;
+  --priority-low: #10b981;
+}
+
+.admin-complaint-details-viewport {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================
+   UPPER TOOLBAR ACTION CONTROL WRAPPERS
+========================================================== */
+
+.admin-details-action-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border-element);
+  margin-bottom: 28px;
+  gap: 16px;
+}
+
+.admin-details-action-toolbar button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.back-btn {
+  background: #ffffff;
+  border: 1px solid var(--border-element);
+  color: #475569;
+}
+
+.back-btn:hover:not(:disabled) {
+  background: var(--bg-panel);
+  color: var(--text-main);
+  border-color: #cbd5e1;
+}
+
+.destructive-delete-btn {
+  background: #fff5f5;
+  border: 1px solid #fee2e2;
+  color: #c53030;
+}
+
+.destructive-delete-btn:hover:not(:disabled) {
+  background: #fee2e2;
+  color: #9b1c1c;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.08);
+}
+
+.admin-details-action-toolbar button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================
+   STRUCTURAL TWO-COLUMN LAYOUT DESK CONFIGURATION
+========================================================== */
+
+.admin-details-structural-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 28px;
+  align-items: start;
+}
+
+/* LEFT COLUMN: Grievance Content Structure Sheets */
+.details-data-main-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-element);
+  border-radius: 20px;
+  padding: 36px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.card-identity-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-element);
+  padding-bottom: 24px;
+}
+
+.urgency-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.urgency-high {
+  background: #fee2e2;
+  color: #9b1c1c;
+}
+.urgency-medium {
+  background: #fef3c7;
+  color: #92400e;
+}
+.urgency-low {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.card-identity-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.unique-id-tag {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.payload-description-block {
+  padding: 24px 0;
+}
+
+.payload-description-block h4 {
+  margin: 0 0 10px 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.payload-description-block p {
+  margin: 0;
+  font-size: 1rem;
+  color: #334155;
+  line-height: 1.6;
+}
+
+/* Metadata Parameter Parameters Flex Grid */
+.metadata-parameter-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  background: var(--bg-panel);
+  border-radius: 14px;
+  padding: 24px;
+  border: 1px solid #f1f5f9;
+}
+
+.matrix-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.matrix-item label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-sub);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.matrix-item .value-string {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Enhanced Subsystem Status Indicator Pills */
+.status-pill {
+  display: inline-flex;
+  align-self: flex-start;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.status-open {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+.status-assigned {
+  background: #f5f3ff;
+  color: #6d28d9;
+}
+.status-in-progress {
+  background: #fef3c7;
+  color: #b45309;
+}
+.status-resolved {
+  background: #dcfce7;
+  color: #15803d;
+}
+.status-closed {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+/* Evidence Graphic Framing Containments */
+.evidence-attachment-container {
+  margin-top: 32px;
+  border-top: 1px dashed var(--border-element);
+  padding-top: 24px;
+}
+
+.evidence-attachment-container h4 {
+  margin: 0 0 14px 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+}
+
+.image-frame {
+  max-width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-element);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.image-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  max-height: 450px;
+}
+
+/* ==========================================================
+   RIGHT COLUMN: CONTROL COMMAND CAPTURE BLOCKS
+========================================================== */
+
+.operations-control-panel-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-element);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
+  position: sticky;
+  top: 24px;
+}
+
+.operations-control-panel-card h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.panel-subtitle {
+  margin: 6px 0 24px 0;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  line-height: 1.4;
+}
+
+.panel-divider {
+  border: 0;
+  border-top: 1px solid var(--border-element);
+  margin: 24px 0;
+}
+
+.control-module-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.control-module-section label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.control-input-action-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Select Form Element Overrides */
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select-wrapper select,
+.input-numerical-wrapper input {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--border-element);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  outline: none;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: all var(--transition-speed);
+}
+
+.select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 36px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px;
+  font-weight: 600;
+}
+
+.select-wrapper select:focus,
+.input-numerical-wrapper input:focus {
+  border-color: var(--primary-indigo);
+  box-shadow: 0 0 0 4px var(--focus-ring);
+}
+
+/* Execute Mutation Cta Buttons Layout */
+.action-commit-save-btn,
+.action-commit-assign-btn {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 16px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all var(--transition-speed);
+}
+
+.action-commit-save-btn {
+  background: var(--text-main);
+  color: #ffffff;
+}
+
+.action-commit-save-btn:hover:not(:disabled) {
+  background: #1e293b;
+}
+
+.action-commit-assign-btn {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+}
+
+.action-commit-assign-btn:hover:not(:disabled) {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.action-commit-save-btn:disabled,
+.action-commit-assign-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================
+   VIEWPORT POLL OR EMPTY BOUNDARY INTERCEPT COMPONENT LAYOUTS
+========================================================== */
+
+.admin-details-loading-state,
+.admin-details-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 24px;
+  gap: 16px;
+}
+
+.admin-sync-spinner {
+  animation: admin-spin-kf 0.85s linear infinite;
+  color: var(--primary-indigo);
+}
+
+.admin-details-loading-state h3,
+.admin-details-empty-state h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.admin-details-empty-state p {
+  margin: 0 0 8px 0;
+  font-size: 0.9rem;
+  color: var(--text-sub);
+}
+
+.error-shield-icon {
+  color: var(--priority-high);
+}
+
+@keyframes admin-spin-kf {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE LAYOUT CONTEXT BREAKPOINTS MEDIA QUERIES
+========================================================== */
+
+@media (max-width: 992px) {
+  .admin-details-structural-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .operations-control-panel-card {
+    position: static;
+  }
+}
+
+@media (max-width: 480px) {
+  .details-data-main-card {
+    padding: 24px 16px;
+  }
+
+  .card-identity-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .metadata-parameter-matrix {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+}

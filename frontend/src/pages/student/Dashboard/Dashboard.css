@@ -1,0 +1,353 @@
+/* ==========================================================
+   CAMPUS AI PREMIUM STUDENT DASHBOARD SYSTEM
+========================================================== */
+
+:root {
+  --text-main: #0f172a;
+  --text-sub: #64748b;
+  --border-card: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-panel: #f8fafc;
+  --primary-indigo: #4f46e5;
+  --primary-hover: #4338ca;
+  --transition-default: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.student-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ==========================================================
+   WELCOME HERO BANNER
+========================================================== */
+
+.welcome-banner {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border-radius: 20px;
+  padding: 36px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+  box-sizing: border-box;
+}
+
+.banner-text h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.banner-text h1 span {
+  color: #a5b4fc;
+}
+
+.banner-text p {
+  margin: 6px 0 0 0;
+  font-size: 0.95rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  max-width: 580px;
+}
+
+/* Action Trigger Button */
+.create-complaint-btn {
+  background: var(--primary-indigo);
+  color: #ffffff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+  transition: all var(--transition-default);
+}
+
+.create-complaint-btn:hover {
+  background: var(--primary-hover);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+  transform: translateY(-1px);
+}
+
+.create-complaint-btn:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================
+   METRICS COUNTER GRID SYSTEM
+========================================================== */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+/* ==========================================================
+   TIMELINE AUDIT STREAM
+========================================================== */
+
+.activity-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.01);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-card);
+  padding-bottom: 16px;
+}
+
+.activity-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+.refresh-action-btn {
+  background: #ffffff;
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #475569;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all var(--transition-default);
+}
+
+.refresh-action-btn:hover:not(:disabled) {
+  background: var(--bg-panel);
+  color: var(--text-main);
+  border-color: #cbd5e1;
+}
+
+.refresh-action-btn.spinning svg {
+  animation: loading-spin 0.85s linear infinite;
+}
+
+/* Scroller/Track Layout Architecture */
+.activity-stream {
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-item {
+  display: flex;
+  gap: 16px;
+}
+
+.activity-track-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.activity-dot-marker {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 3px #f1f5f9;
+  z-index: 2;
+  margin-top: 6px;
+}
+
+.activity-item:first-child .activity-dot-marker {
+  background: #3b82f6;
+  box-shadow: 0 0 0 3px #dbeafe;
+}
+
+.activity-track-line::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  bottom: -16px;
+  width: 2px;
+  background: #e2e8f0;
+  z-index: 1;
+}
+
+.activity-item:last-child .activity-track-line::after {
+  display: none;
+}
+
+.activity-content-block {
+  padding-bottom: 20px;
+  flex: 1;
+}
+
+.activity-content-block p {
+  margin: 0 0 4px 0;
+  font-size: 0.92rem;
+  color: var(--text-main);
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.activity-timestamp {
+  font-size: 0.78rem;
+  color: var(--text-sub);
+}
+
+/* Empty Placeholder View */
+.empty-activity {
+  text-align: center;
+  padding: 48px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.empty-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: var(--bg-panel);
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  border: 1px solid var(--border-card);
+}
+
+.empty-activity h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.empty-activity p {
+  margin: 4px 0 0 0;
+  font-size: 0.88rem;
+  color: var(--text-sub);
+}
+
+/* ==========================================================
+   GLOBAL LOADING / ERROR FALLBACK LAYOUTS
+========================================================== */
+
+.dashboard-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 380px;
+  gap: 16px;
+}
+
+.loader-ring {
+  width: 36px;
+  height: 36px;
+  border: 3.5px solid var(--bg-panel);
+  border-top-color: var(--primary-indigo);
+  border-radius: 50%;
+  animation: loading-spin 0.8s linear infinite;
+}
+
+.dashboard-error {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 16px;
+  max-width: 440px;
+  margin: 40px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+}
+
+.error-icon-box {
+  color: #ef4444;
+  margin-bottom: 14px;
+}
+
+.dashboard-error p {
+  font-size: 0.9rem;
+  color: var(--text-sub);
+  margin: 6px 0 20px 0;
+}
+
+.retry-btn {
+  background: var(--text-main);
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+@keyframes loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE DESIGN SYSTEM MEDIA QUERIES
+========================================================== */
+
+@media (max-width: 1200px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .welcome-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px;
+  }
+  .create-complaint-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .activity-card {
+    padding: 20px 16px;
+  }
+  .banner-text h1 {
+    font-size: 1.45rem;
+  }
+}

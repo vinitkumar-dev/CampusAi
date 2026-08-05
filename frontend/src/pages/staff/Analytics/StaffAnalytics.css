@@ -1,0 +1,266 @@
+/* ==========================================================
+   CAMPUS AI PREMIUM STAFF PERFORMANCE TELEMETRY DASHBOARD
+========================================================== */
+
+:root {
+  --text-main: #0f172a;
+  --text-sub: #64748b;
+  --border-element: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-panel: #f8fafc;
+  --primary-indigo: #4f46e5;
+  --primary-hover: #4338ca;
+  --focus-ring: rgba(79, 70, 229, 0.15);
+  --transition-speed: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Operational Context Palettes */
+  --blue-brand: #3b82f6;
+  --blue-tint: #eff6ff;
+  --success-brand: #10b981;
+  --success-tint: #ecfdf5;
+  --warning-brand: #f97316;
+  --warning-tint: #fff7ed;
+  --danger-brand: #ef4444;
+  --danger-tint: #fef2f2;
+}
+
+.staff-analytics-page-root-viewport {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================
+   UPPER HEADER PANEL STRUCTURAL IDENTITY BLOCK
+========================================================== */
+
+.analytics-header-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border-element);
+  margin-bottom: 32px;
+}
+
+.identity-meta-stack h1 {
+  margin: 0;
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.identity-meta-stack h1 svg {
+  color: var(--primary-indigo);
+}
+
+.identity-meta-stack p {
+  margin: 6px 0 0 0;
+  font-size: 0.9rem;
+  color: var(--text-sub);
+}
+
+/* ==========================================================
+   METRICS TELESCOPIC COUNTER MATRIX GRID 
+========================================================== */
+
+.analytics-metric-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.analytics-metric-node-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-element);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.01);
+}
+
+.metric-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.metric-data-block h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.1;
+}
+
+.metric-data-block span {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-sub);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* Color Intent Variants Array classes mapping */
+.focus-intent-blue .metric-icon-wrapper {
+  background: var(--blue-tint);
+  color: var(--blue-brand);
+}
+.focus-intent-success .metric-icon-wrapper {
+  background: var(--success-tint);
+  color: var(--success-brand);
+}
+.focus-intent-warning .metric-icon-wrapper {
+  background: var(--warning-tint);
+  color: var(--warning-brand);
+}
+.focus-intent-danger .metric-icon-wrapper {
+  background: var(--danger-tint);
+  color: var(--danger-brand);
+}
+
+/* ==========================================================
+   CATEGORY PROGRESS VISUALIZATION CHART LAYOUT PANEL
+========================================================== */
+
+.category-distribution-panel-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-element);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.01);
+}
+
+.category-distribution-panel-card h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+.panel-subheading-meta {
+  margin: 4px 0 28px 0;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+}
+
+.category-visualizer-list-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.category-data-row-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.category-meta-labels-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.category-identity-string {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.category-raw-count-badge {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-element);
+  color: var(--text-main);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+/* CSS Percentage Fill Components layout mechanics */
+.category-bar-track-background {
+  width: 100%;
+  height: 8px;
+  background-color: var(--bg-panel);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.category-bar-progress-filler {
+  height: 100%;
+  background-color: var(--primary-indigo);
+  border-radius: 9999px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Alternate sequence cycling logic colors for graphical metrics variation */
+.category-data-row-item:nth-child(2n) .category-bar-progress-filler {
+  background-color: var(--blue-brand);
+}
+.category-data-row-item:nth-child(3n) .category-bar-progress-filler {
+  background-color: #8b5cf6;
+}
+
+/* ==========================================================
+   EMPTY VIEWS AND INTERCEPT COMPONENT VIEWS LOADING
+========================================================== */
+
+.analytics-empty-intercept-viewport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 16px;
+  color: #cbd5e1;
+  gap: 12px;
+}
+
+.analytics-empty-intercept-viewport p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text-sub);
+}
+
+.analytics-loading-viewport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 160px 24px;
+  gap: 16px;
+}
+
+.analytics-spin-loader {
+  animation: analytics-spin-kf 0.8s linear infinite;
+  color: var(--primary-indigo);
+}
+
+.analytics-loading-viewport h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-sub);
+}
+
+@keyframes analytics-spin-kf {
+  to {
+    transform: rotate(360deg);
+  }
+}

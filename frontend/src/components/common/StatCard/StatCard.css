@@ -1,0 +1,217 @@
+/* ==========================================================
+   CAMPUS AI PREMIUM STAT CARD
+========================================================== */
+
+:root {
+  --text-main: #0f172a;
+  --text-sub: #64748b;
+  --border-card: #e2e8f0;
+  --transition-card: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stat-card {
+  position: relative;
+
+  background: #ffffff;
+
+  border: 1px solid var(--border-card);
+
+  border-radius: 18px;
+
+  padding: 22px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+
+  min-height: 160px;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+
+  transition:
+    transform var(--transition-card),
+    box-shadow var(--transition-card),
+    border-color var(--transition-card);
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(79, 70, 229, 0.25);
+
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+}
+
+/* ==========================================================
+   TOP ROW
+========================================================== */
+
+.stat-card-top {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+/* ICON */
+
+.stat-icon {
+  width: 48px;
+
+  height: 48px;
+
+  border-radius: 14px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  background: color-mix(in srgb, var(--card-color) 12%, #ffffff);
+
+  color: var(--card-color);
+
+  transition: all var(--transition-card);
+}
+
+.stat-card:hover .stat-icon {
+  background: var(--card-color);
+
+  color: #ffffff;
+
+  transform: scale(1.05);
+}
+
+/* ==========================================================
+   TREND BADGE
+========================================================== */
+
+.stat-change {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  padding: 5px 10px;
+
+  border-radius: 20px;
+
+  font-size: 0.75rem;
+
+  font-weight: 700;
+}
+
+.stat-change.positive {
+  background: #dcfce7;
+
+  color: #15803d;
+}
+
+.stat-change.negative {
+  background: #fee2e2;
+
+  color: #dc2626;
+}
+
+/* ==========================================================
+   VALUE SECTION
+========================================================== */
+
+.stat-card-content {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 6px;
+}
+
+.stat-card-content h2 {
+  margin: 0;
+
+  font-size: 2rem;
+
+  font-weight: 800;
+
+  line-height: 1;
+
+  color: var(--text-main);
+
+  letter-spacing: -0.04em;
+}
+
+.stat-card-content p {
+  margin: 0;
+
+  font-size: 0.88rem;
+
+  font-weight: 600;
+
+  color: var(--text-sub);
+}
+
+/* ==========================================================
+   BACKGROUND GLOW
+========================================================== */
+
+.stat-glow {
+  position: absolute;
+
+  right: -40px;
+
+  bottom: -40px;
+
+  width: 130px;
+
+  height: 130px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(circle, var(--card-color), transparent 70%);
+
+  opacity: 0.04;
+
+  pointer-events: none;
+
+  transition: opacity var(--transition-card);
+}
+
+.stat-card:hover .stat-glow {
+  opacity: 0.1;
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 768px) {
+  .stat-card {
+    padding: 18px;
+
+    min-height: 140px;
+  }
+
+  .stat-icon {
+    width: 42px;
+
+    height: 42px;
+  }
+
+  .stat-card-content h2 {
+    font-size: 1.7rem;
+  }
+}

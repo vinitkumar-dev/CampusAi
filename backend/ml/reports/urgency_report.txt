@@ -1,0 +1,25 @@
+URGENCY MODEL REPORT
+
+Accuracy: 1.0000
+Precision: 1.0000
+Recall: 1.0000
+F1 Score: 1.0000
+
+              precision    recall  f1-score   support
+
+    Critical       1.00      1.00      1.00      1197
+        High       1.00      1.00      1.00      1234
+         Low       1.00      1.00      1.00      1372
+      Medium       1.00      1.00      1.00      1197
+
+    accuracy                           1.00      5000
+   macro avg       1.00      1.00      1.00      5000
+weighted avg       1.00      1.00      1.00      5000
+
+
+Confusion Matrix
+
+[[1197    0    0    0]
+ [   0 1234    0    0]
+ [   0    0 1372    0]
+ [   0    0    0 1197]]

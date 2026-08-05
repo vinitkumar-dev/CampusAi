@@ -1,0 +1,432 @@
+/* ==========================================================
+   CAMPUS AI PREMIUM TELEMETRY & ANALYTICS STYLING ENVIRONMENT
+========================================================== */
+
+:root {
+  --text-main: #0f172a;
+  --text-sub: #64748b;
+  --border-element: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-panel: #f8fafc;
+  --primary-indigo: #4f46e5;
+  --primary-hover: #4338ca;
+  --focus-ring: rgba(79, 70, 229, 0.15);
+  --transition-speed: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Matrix Analytics Theme Variables */
+  --blue-primary: #3b82f6;
+  --blue-bg: #eff6ff;
+  --blue-border: #bfdbfe;
+  --orange-primary: #f97316;
+  --orange-bg: #fff7ed;
+  --orange-border: #ffedd5;
+  --purple-primary: #8b5cf6;
+  --purple-bg: #f5f3ff;
+  --purple-border: #ddd6fe;
+  --green-primary: #10b981;
+  --green-bg: #ecfdf5;
+  --green-border: #d1fae5;
+  --red-primary: #ef4444;
+  --red-bg: #fef2f2;
+  --red-border: #fee2e2;
+}
+
+.admin-analytics-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================
+   ANALYTICS ENGINE DASHBOARD HEADER INTERFACES
+========================================================== */
+
+.analytics-dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border-element);
+  margin-bottom: 32px;
+  gap: 16px;
+}
+
+.header-identity h1 {
+  margin: 0;
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.header-identity p {
+  margin: 6px 0 0 0;
+  font-size: 0.9rem;
+  color: var(--text-sub);
+}
+
+.telemetry-sync-btn {
+  background: #ffffff;
+  border: 1px solid var(--border-element);
+  color: #475569;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all var(--transition-speed);
+}
+
+.telemetry-sync-btn:hover:not(:disabled) {
+  background: var(--bg-panel);
+  border-color: #cbd5e1;
+  color: var(--text-main);
+}
+
+.telemetry-sync-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==========================================================
+   METRIC SUMMARY GRID DISPLAY MATRIX
+========================================================== */
+
+.analytics-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+.analytics-metric-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-element);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.01);
+  transition:
+    transform var(--transition-speed),
+    box-shadow var(--transition-speed);
+}
+
+.analytics-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+}
+
+.metric-icon-shield {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.metric-content-stack h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.metric-content-stack p {
+  margin: 2px 0 0 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-sub);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* Explicit Dynamic Class Color Handshakes */
+.metric-blue .metric-icon-shield {
+  background: var(--blue-bg);
+  color: var(--blue-primary);
+  border: 1px solid var(--blue-border);
+}
+.metric-orange .metric-icon-shield {
+  background: var(--orange-bg);
+  color: var(--orange-primary);
+  border: 1px solid var(--orange-border);
+}
+.metric-purple .metric-icon-shield {
+  background: var(--purple-bg);
+  color: var(--purple-primary);
+  border: 1px solid var(--purple-border);
+}
+.metric-green .metric-icon-shield {
+  background: var(--green-bg);
+  color: var(--green-primary);
+  border: 1px solid var(--green-border);
+}
+.metric-red .metric-icon-shield {
+  background: var(--red-bg);
+  color: var(--red-primary);
+  border: 1px solid var(--red-border);
+}
+
+/* ==========================================================
+   DUAL SPLIT PANEL LAYOUT SECTION CONFIGURATIONS
+========================================================== */
+
+.analytics-dual-panel-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.analysis-data-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-element);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.01);
+}
+
+.panel-header-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--border-element);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.panel-decor-icon {
+  color: var(--primary-indigo);
+}
+
+.panel-header-row h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.summary-list-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Left Panel Progress-Row Layouts */
+.summary-list-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.row-label-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item-title-string {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.item-ratio-pill {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-sub);
+  background: var(--bg-panel);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.progress-bar-track {
+  width: 100%;
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--primary-indigo);
+  border-radius: 9999px;
+  transition: width 0.5s ease-out;
+}
+
+.item-numerical-value {
+  position: absolute;
+  right: 0;
+  bottom: -4px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: none; /* Extracted cleanly via layouts overrides */
+}
+
+/* Alternative design mapping: value embedded into grid column directly */
+.summary-list-row:not(.systemic-row) {
+  display: grid;
+  grid-template-columns: 1fr 100px 45px;
+  align-items: center;
+  gap: 16px;
+}
+.summary-list-row:not(.systemic-row) .row-label-group {
+  display: block;
+}
+.summary-list-row:not(.systemic-row) .item-ratio-pill {
+  display: inline-block;
+  margin-left: 8px;
+}
+.summary-list-row:not(.systemic-row) .item-numerical-value {
+  display: block;
+  position: static;
+  text-align: right;
+}
+
+/* Right Panel Systemic Operational Metrics Row overrides */
+.systemic-row {
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed #f1f5f9;
+}
+
+.systemic-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.systemic-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.systemic-desc {
+  margin: 2px 0 0 0;
+  font-size: 0.8rem;
+  color: var(--text-sub);
+}
+
+.metrics-large {
+  font-size: 1.2rem;
+  color: var(--text-main);
+}
+
+.highlighting-backlog {
+  font-size: 1.15rem;
+  color: var(--orange-primary);
+}
+
+.highlighting-critical {
+  font-size: 1.15rem;
+  color: var(--red-primary);
+  background: var(--red-bg);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+/* Resolution Efficiency Badge */
+.rate-text {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+.rate-text.good {
+  color: var(--green-primary);
+}
+.rate-text.warning {
+  color: var(--orange-primary);
+}
+.rate-text.critical {
+  color: var(--red-primary);
+}
+
+/* ==========================================================
+   VIEWPORT LOADING FRAMEWORKS CONFIGURATIONS
+========================================================== */
+
+.analytics-loading-viewport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 24px;
+  gap: 16px;
+  text-align: center;
+}
+
+.analytics-spin-loader {
+  animation: telemetry-spin-kf 0.8s linear infinite;
+  color: var(--primary-indigo);
+}
+
+.analytics-loading-viewport h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-sub);
+}
+
+.empty-panel-placeholder {
+  color: var(--text-sub);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 20px 0;
+  margin: 0;
+}
+
+@keyframes telemetry-spin-kf {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================
+   MEDIA QUERIES OVERRIDES RESPONSIVE GRID MATRIX
+========================================================== */
+
+@media (max-width: 992px) {
+  .analytics-dual-panel-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .summary-list-row:not(.systemic-row) {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .summary-list-row:not(.systemic-row) .item-numerical-value {
+    text-align: left;
+    font-size: 1.1rem;
+  }
+  .progress-bar-track {
+    height: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .analytics-dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .telemetry-sync-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

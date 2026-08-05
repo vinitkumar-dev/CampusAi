@@ -1,0 +1,94 @@
+/* ==========================================================
+   CAMPUS AI PREMIUM STATUS BADGE SYSTEM
+========================================================== */
+
+:root {
+  /* Premium Balanced Status Palette */
+  --open-bg: #eff6ff;
+  --open-text: #2563eb;
+  --open-dot: #3b82f6;
+
+  --assigned-bg: #f5f3ff;
+  --assigned-text: #7c3aed;
+  --assigned-dot: #8b5cf6;
+
+  --progress-bg: #fff7ed;
+  --progress-text: #ea580c;
+  --progress-dot: #f97316;
+
+  --resolved-bg: #f0fdf4;
+  --resolved-text: #16a34a;
+  --resolved-dot: #22c55e;
+
+  --closed-bg: #f8fafc;
+  --closed-text: #64748b;
+  --closed-dot: #94a3b8;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px; /* Pill layout */
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* ==========================================================
+   VARIATION MODIFIERS
+========================================================== */
+
+/* Open State */
+.status-badge.open {
+  background-color: var(--open-bg);
+  color: var(--open-text);
+}
+.status-badge.open .badge-dot {
+  background-color: var(--open-dot);
+}
+
+/* Assigned State */
+.status-badge.assigned {
+  background-color: var(--assigned-bg);
+  color: var(--assigned-text);
+}
+.status-badge.assigned .badge-dot {
+  background-color: var(--assigned-dot);
+}
+
+/* In Progress State */
+.status-badge.progress {
+  background-color: var(--progress-bg);
+  color: var(--progress-text);
+}
+.status-badge.progress .badge-dot {
+  background-color: var(--progress-dot);
+}
+
+/* Resolved State */
+.status-badge.resolved {
+  background-color: var(--resolved-bg);
+  color: var(--resolved-text);
+}
+.status-badge.resolved .badge-dot {
+  background-color: var(--resolved-dot);
+}
+
+/* Closed State */
+.status-badge.closed {
+  background-color: var(--closed-bg);
+  color: var(--closed-text);
+}
+.status-badge.closed .badge-dot {
+  background-color: var(--closed-dot);
+}

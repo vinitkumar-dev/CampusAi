@@ -1,0 +1,403 @@
+/* ==========================================================
+   CAMPUS AI PREMIUM ACCOUNT SYSTEM MANAGEMENT SHEET
+========================================================== */
+
+:root {
+  --text-main: #0f172a;
+  --text-sub: #64748b;
+  --border-element: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-panel: #f8fafc;
+  --primary-indigo: #4f46e5;
+  --primary-hover: #4338ca;
+  --focus-ring: rgba(79, 70, 229, 0.15);
+  --transition-speed: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.profile-page-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.profile-card-layout {
+  background: var(--bg-card);
+  border: 1px solid var(--border-element);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* ==========================================================
+   IDENTITY HERO HEADER CARD LAYOUT
+========================================================== */
+
+.profile-top-hero {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 36px;
+  background: linear-gradient(to right, var(--bg-panel), #ffffff);
+  border-bottom: 1px solid var(--border-element);
+}
+
+/* Avatar Composition Architecture */
+.avatar-composition-box {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+}
+
+/* .profile-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  transition: filter var(--transition-speed);
+} */
+
+/* ==========================================================
+   USER PROFILE AVATAR
+========================================================== */
+
+.user-profile-avatar {
+  width: 96px;
+
+  height: 96px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  display: block;
+
+  border: 4px solid #ffffff;
+
+  background: #f8fafc;
+
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.user-profile-avatar:hover {
+  transform: scale(1.04);
+
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.16);
+}
+
+/* Mobile */
+
+@media (max-width: 680px) {
+  .user-profile-avatar {
+    width: 80px;
+
+    height: 80px;
+  }
+}
+
+.profile-avatar-img.image-dimmed {
+  filter: brightness(0.6);
+}
+
+.camera-overlay-action {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 5;
+}
+
+.camera-trigger-label {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--text-main);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform var(--transition-speed);
+}
+
+.camera-trigger-label:hover {
+  transform: scale(1.05);
+}
+
+/* Metadata Text Elements Block */
+.profile-identity-meta {
+  flex: 1;
+}
+
+.profile-identity-meta h2 {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.meta-email {
+  margin: 4px 0 10px 0;
+  font-size: 0.9rem;
+  color: var(--text-sub);
+}
+
+.role-security-badge {
+  background: #e0e7ff;
+  color: var(--primary-indigo);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* Action Trigger Toggles Row */
+.edit-toggle-btn,
+.cancel-toggle-btn {
+  border: 1px solid var(--border-element);
+  background: #ffffff;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.edit-toggle-btn:hover {
+  background: var(--bg-panel);
+  border-color: #cbd5e1;
+  color: var(--text-main);
+}
+
+.cancel-toggle-btn {
+  background: #fef2f2;
+  border-color: #fee2e2;
+  color: #ef4444;
+}
+
+.cancel-toggle-btn:hover {
+  background: #fee2e2;
+}
+
+/* ==========================================================
+   FORM CONTROLS GRID ARCHITECTURE
+========================================================== */
+
+.profile-form-body {
+  padding: 36px;
+}
+
+.form-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 32px;
+}
+
+.field-group-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field-group-cell.grid-span-full {
+  grid-column: span 2;
+}
+
+.field-group-cell label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.field-group-cell input,
+.field-group-cell textarea {
+  background: #ffffff;
+  border: 1px solid var(--border-element);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 0.92rem;
+  color: var(--text-main);
+  outline: none;
+  font-family: inherit;
+  transition: all var(--transition-speed);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.field-group-cell input:focus,
+.field-group-cell textarea:focus {
+  border-color: var(--primary-indigo);
+  box-shadow: 0 0 0 4px var(--focus-ring);
+}
+
+/* Disabled Input Form Fields Styling Variants */
+.field-group-cell input:disabled,
+.field-group-cell textarea:disabled {
+  background: var(--bg-panel);
+  color: #64748b;
+  cursor: not-allowed;
+  border-color: var(--border-element);
+}
+
+.field-group-cell input.system-read-only {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #94a3b8;
+}
+
+.field-group-cell textarea {
+  resize: vertical;
+}
+
+/* ==========================================================
+   FORM ACTION TOOLBAR BOTTOM COMPONENT
+========================================================== */
+
+.form-persistence-actions-bar {
+  margin-top: 36px;
+  border-top: 1px solid var(--border-element);
+  padding-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.save-submit-btn {
+  background: var(--text-main);
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+  transition: all var(--transition-speed);
+}
+
+.save-submit-btn:hover:not(:disabled) {
+  background: #1e293b;
+  transform: translateY(-1px);
+}
+
+.save-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==========================================================
+   VIEWPORT LOADING / FALLBACK LAYOUTS
+========================================================== */
+
+.profile-loading-viewport,
+.profile-error-viewport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 24px;
+  text-align: center;
+  gap: 16px;
+}
+
+.profile-spin-loader {
+  animation: sync-spin 0.85s linear infinite;
+  color: var(--primary-indigo);
+}
+
+.spin-inline {
+  animation: sync-spin 0.85s linear infinite;
+}
+
+.profile-loading-viewport h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-sub);
+  margin: 0;
+}
+
+.profile-error-viewport h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.profile-error-viewport p {
+  font-size: 0.92rem;
+  color: var(--text-sub);
+  margin: 0;
+}
+
+@keyframes sync-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE DESIGN SYSTEM MEDIA BREAKPOINTS
+========================================================== */
+
+@media (max-width: 960px) {
+  .form-fields-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .field-group-cell.grid-span-full {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 680px) {
+  .profile-top-hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 28px;
+  }
+
+  .profile-action-header-cta {
+    width: 100%;
+  }
+
+  .edit-toggle-btn,
+  .cancel-toggle-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .profile-form-body {
+    padding: 24px;
+  }
+
+  .form-persistence-actions-bar {
+    justify-content: stretch;
+  }
+
+  .save-submit-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

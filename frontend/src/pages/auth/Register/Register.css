@@ -1,0 +1,321 @@
+/* ==========================================================
+   CAMPUS AI PREMIUM PROVISIONING LOG ENVIRONMENT SHEET
+========================================================== */
+
+:root {
+  --text-main: #0f172a;
+  --text-sub: #64748b;
+  --border-element: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-panel: #f8fafc;
+  --primary-indigo: #4f46e5;
+  --primary-hover: #4338ca;
+  --focus-ring: rgba(79, 70, 229, 0.14);
+  --transition-speed: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.register-viewport-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #090d16;
+  background-image:
+    radial-gradient(at 0% 100%, rgba(79, 70, 229, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(124, 58, 237, 0.05) 0px, transparent 50%);
+  position: relative;
+  overflow: hidden;
+  padding: 32px 24px;
+  box-sizing: border-box;
+}
+
+/* Background Atmospheric Fluid Blurs */
+.register-branding-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.decor-glow-orb-1 {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  background: var(--primary-indigo);
+  filter: blur(140px);
+  opacity: 0.1;
+  bottom: 5%;
+  left: 10%;
+  border-radius: 50%;
+}
+
+.decor-glow-orb-2 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: #a855f7;
+  filter: blur(130px);
+  opacity: 0.06;
+  top: 10%;
+  right: 10%;
+  border-radius: 50%;
+}
+
+/* ==========================================================
+   CORE PLATFORM REGISTRATION WRAPPER COMPONENT
+========================================================== */
+
+.register-card-container {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 25px 50px -12px rgba(15, 23, 42, 0.35);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 480px;
+  padding: 40px;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+/* Header Context Meta Title Blocks */
+.register-card-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.brand-badge-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f5f3ff;
+  border: 1px solid #ddd6fe;
+  padding: 6px 14px;
+  border-radius: 20px;
+  color: #5b21b6;
+  margin-bottom: 14px;
+}
+
+.brand-sparkle-icon {
+  color: var(--primary-indigo);
+}
+
+.brand-badge-text {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.register-card-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--text-main);
+  letter-spacing: -0.03em;
+}
+
+.register-card-header p {
+  margin: 6px 0 0 0;
+  font-size: 0.9rem;
+  color: var(--text-sub);
+}
+
+/* ==========================================================
+   FORM INPUT FIELD STRUCTURAL MANAGEMENT
+========================================================== */
+
+.register-functional-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.input-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-field-group label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.input-field-group input,
+.register-functional-form select {
+  background: #ffffff;
+  border: 1px solid var(--border-element);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 0.92rem;
+  color: var(--text-main);
+  outline: none;
+  font-family: inherit;
+  transition: all var(--transition-speed);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-field-group input:focus,
+.register-functional-form select:focus {
+  border-color: var(--primary-indigo);
+  box-shadow: 0 0 0 4px var(--focus-ring);
+}
+
+.input-field-group input:disabled,
+.register-functional-form select:disabled {
+  background: var(--bg-panel);
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Password Input Context Wrappers */
+.password-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-input-wrapper input {
+  padding-right: 44px;
+}
+
+.password-visibility-toggle {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: color var(--transition-speed);
+}
+
+.password-visibility-toggle:hover:not(:disabled) {
+  color: var(--text-main);
+}
+
+/* Custom Styled Dropdown Selection Elements */
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 38px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #334155;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 13px;
+}
+
+/* ==========================================================
+   MUTATION LIFECYCLE ACTION SUBMIT TRIGGER BUTTON
+========================================================== */
+
+.register-submit-cta-btn {
+  background: var(--text-main);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 6px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+  transition: all var(--transition-speed);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.register-submit-cta-btn:hover:not(:disabled) {
+  background: #1e293b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
+}
+
+.register-submit-cta-btn:disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
+}
+
+.btn-spin-loader {
+  animation: spin-handshake 0.85s linear infinite;
+}
+
+/* ==========================================================
+   FOOTER ROUTER REDIRECT NAVIGATION ITEMS
+========================================================== */
+
+.login-redirect-footer {
+  margin-top: 28px;
+  border-top: 1px solid var(--border-element);
+  padding-top: 18px;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--text-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.login-inline-link {
+  color: var(--primary-indigo);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+
+.login-inline-link:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* ==========================================================
+   KEYFRAME TRANSITION INTERPRETATIONS
+========================================================== */
+
+@keyframes spin-handshake {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================
+   MEDIA VIEWPORT OVERRIDES
+========================================================== */
+
+@media (max-width: 480px) {
+  .register-card-container {
+    padding: 32px 20px;
+    border-radius: 20px;
+  }
+
+  .register-card-header h1 {
+    font-size: 1.75rem;
+  }
+}

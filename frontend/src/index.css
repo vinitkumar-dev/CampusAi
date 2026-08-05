@@ -1,0 +1,95 @@
+/* ==========================================================
+   CAMPUS AI METROPOLIS MASTER TOKENS VARIABLES
+========================================================== */
+
+:root {
+  /* Design Color Palette Constants */
+  --font-sans:
+    "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, sans-serif;
+
+  --bg-app-dark: #090d16;
+  --bg-app-light: #f8fafc;
+  --text-main: #0f172a;
+  --text-sub: #64748b;
+  --border-element: #e2e8f0;
+
+  --primary-indigo: #4f46e5;
+  --primary-hover: #4338ca;
+  --focus-ring: rgba(79, 70, 229, 0.16);
+
+  /* System Global Animation Parameters */
+  --transition-speed: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================
+   GLOBAL RESET FRAMEWORK SHEET
+========================================================== */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-app-light);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* Scrollbar Viewport Metrics Customizations */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ==========================================================
+   GLOBAL TRANSITION INTERACTIVE DECOR COMPONENTS
+========================================================== */
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Global loading spin utility tracking */
+.global-feed-spin,
+.btn-spin-loader,
+.spin {
+  animation: root-spin-keyframes 0.8s linear infinite !important;
+}
+
+@keyframes root-spin-keyframes {
+  to {
+    transform: rotate(360deg);
+  }
+}
