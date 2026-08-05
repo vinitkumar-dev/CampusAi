@@ -21,8 +21,7 @@ export const uploadFile = async (file) => {
 
   // Convert relative path to full URL
   if (!url.startsWith("http")) {
-    url = `http://localhost:5000${url}`;
+    url = `https://campusai-ssm9.onrender.com${url}`;
   }
-
   return url;
 };
