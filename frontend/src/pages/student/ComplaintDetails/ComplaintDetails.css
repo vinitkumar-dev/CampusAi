@@ -1,0 +1,369 @@
+/* ==========================================================
+   CAMPUS AI PREMIUM COMPLAINT DETAILS VIEW LAYOUT
+========================================================== */
+
+:root {
+  --text-main: #0f172a;
+  --text-sub: #64748b;
+  --border-element: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-panel: #f8fafc;
+  --primary-indigo: #4f46e5;
+  --ai-purple: #7c3aed;
+  --transition-smooth: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.complaint-details-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Back navigation controller line */
+.details-action-bar {
+  display: flex;
+  align-items: center;
+}
+
+.back-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-sub);
+  transition: color var(--transition-smooth);
+}
+
+.back-link-btn:hover {
+  color: var(--primary-indigo);
+}
+
+/* Main Split View Schema */
+.complaint-details-grid {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* ==========================================================
+   PRIMARY INFORMATION CARD
+========================================================== */
+
+.details-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-element);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--border-element);
+  padding-bottom: 20px;
+}
+
+.header-meta-title h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.meta-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+}
+
+.details-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.details-section label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-sub);
+}
+
+.content-text {
+  margin: 0;
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+.content-text.title-strong {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.content-text.desc-body {
+  font-size: 0.95rem;
+  background: var(--bg-panel);
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border-element);
+}
+
+/* Evidence image container frame */
+.img-frame-wrapper {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-element);
+  padding: 12px;
+  border-radius: 14px;
+  display: inline-flex;
+  max-width: 100%;
+}
+
+.complaint-image {
+  max-width: 100%;
+  max-height: 340px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* ==========================================================
+   AI METRICS & ASSIGNMENT GRID BLOCK MATRIX
+========================================================== */
+
+.prediction-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.prediction-box {
+  padding: 16px;
+  border: 1px solid var(--border-element);
+  border-radius: 14px;
+  background: var(--bg-panel);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.box-icon-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-sub);
+}
+
+.prediction-box h4 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* Ambient AI Custom Stylings */
+.premium-ai-box {
+  background: #f5f3ff;
+  border-color: #ddd6fe;
+}
+
+.premium-ai-box h4 {
+  color: var(--ai-purple);
+}
+
+.ai-star {
+  color: var(--ai-purple);
+}
+
+/* ==========================================================
+   DYNAMIC TIMELINE TRACK COMPONENT
+========================================================== */
+
+.timeline-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-element);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-element);
+  padding-bottom: 16px;
+}
+
+.timeline-header h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.badge-count {
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.timeline-stream {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 16px;
+}
+
+/* Geometric Layout Track Logic */
+.timeline-line-track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.timeline-dot-marker {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 3px #f1f5f9;
+  z-index: 2;
+  margin-top: 6px;
+  transition: all var(--transition-smooth);
+}
+
+.timeline-item:first-child .timeline-dot-marker {
+  background: var(--primary-indigo);
+  box-shadow: 0 0 0 3px #e0e7ff;
+}
+
+.timeline-line-track::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  bottom: -16px;
+  width: 2px;
+  background: #e2e8f0;
+  z-index: 1;
+}
+
+.timeline-item:last-child .timeline-line-track::after {
+  display: none;
+}
+
+.timeline-content-block {
+  padding-bottom: 24px;
+  flex: 1;
+}
+
+.timeline-content-block h4 {
+  margin: 0 0 4px 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+.timestamp-label {
+  font-size: 0.78rem;
+  color: var(--text-sub);
+}
+
+/* ==========================================================
+   LOADER & ERROR OVERRIDES
+========================================================== */
+
+.details-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  gap: 16px;
+}
+
+.loader-circle {
+  width: 40px;
+  height: 40px;
+  border: 3.5px solid var(--border-element);
+  border-top-color: var(--primary-indigo);
+  border-radius: 50%;
+  animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-container {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-element);
+  border-radius: 16px;
+}
+
+.back-home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 10px 18px;
+  background: var(--primary-indigo);
+  color: #ffffff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+/* ==========================================================
+   RESPONSIVE DESIGN ADAPTATIONS
+========================================================== */
+
+@media (max-width: 1024px) {
+  .complaint-details-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .details-card {
+    padding: 20px 16px;
+  }
+  .prediction-grid {
+    grid-template-columns: 1fr;
+  }
+  .header-meta-title h1 {
+    font-size: 1.35rem;
+  }
+}
