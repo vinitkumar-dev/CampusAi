@@ -16,6 +16,7 @@ import {
   deleteComplaint,
   getAdminStaff,
 } from "../../../services/adminService";
+
 import Loader from "../../../components/common/Loader/Loader";
 import "./AdminComplaints.css";
 
@@ -37,82 +38,112 @@ function AdminComplaints() {
   const [showAssignModal, setShowAssignModal] = useState(false);
   const [selectedStaff, setSelectedStaff] = useState("");
 
-  // Wrapped in useCallback to safely use as a dependency and avoid recreation
+  /* =========================================================
+     LOAD COMPLAINTS
+  ========================================================= */
+
   const loadComplaints = useCallback(async (isManualSync = false) => {
     try {
-      if (isManualSync) setSyncing(true);
-      else setLoading(true);
+      if (isManualSync) {
+        setSyncing(true);
+      } else {
+        setLoading(true);
+      }
 
       const data = await getAdminComplaints();
+
       const list = data?.data || data || [];
-      setComplaints(list);
+
+      setComplaints(Array.isArray(list) ? list : []);
     } catch (err) {
-      console.error("Failed loading complaints ledger index:", err);
+      console.error("Failed to load complaints:", err);
     } finally {
       setLoading(false);
       setSyncing(false);
     }
   }, []);
 
-  // Combined effect to handle initial mounting cleanly
+  /* =========================================================
+     LOAD STAFF
+  ========================================================= */
+
+  const loadStaff = async () => {
+    try {
+      const response = await getAdminStaff();
+
+      const list = response?.data || response || [];
+
+      setStaffList(Array.isArray(list) ? list : []);
+    } catch (error) {
+      console.error("Failed to load staff:", error);
+    }
+  };
+
+  /* =========================================================
+     INITIAL LOAD
+  ========================================================= */
+
   useEffect(() => {
     loadComplaints();
-
-    const loadStaff = async () => {
-      try {
-        const response = await getAdminStaff();
-        const list = response?.data || response || [];
-        setStaffList(list);
-      } catch (error) {
-        console.error("Staff loading failed", error);
-      }
-    };
-
     loadStaff();
   }, [loadComplaints]);
 
-  // Filtering Logic
+  /* =========================================================
+     FILTER COMPLAINTS
+  ========================================================= */
+
   useEffect(() => {
-    const filterComplaints = () => {
-      let list = [...complaints];
+    let list = [...complaints];
 
-      if (search.trim()) {
-        const query = search.toLowerCase();
-        list = list.filter(
-          (item) =>
-            item.title?.toLowerCase().includes(query) ||
-            item.category?.toLowerCase().includes(query),
-        );
-      }
+    if (search.trim()) {
+      const query = search.toLowerCase();
 
-      if (status) {
-        list = list.filter((item) => item.status === status);
-      }
+      list = list.filter(
+        (item) =>
+          item.title?.toLowerCase().includes(query) ||
+          item.category?.toLowerCase().includes(query) ||
+          item.description?.toLowerCase().includes(query),
+      );
+    }
 
-      setFiltered(list);
-    };
+    if (status) {
+      list = list.filter((item) => item.status === status);
+    }
 
-    filterComplaints();
+    setFiltered(list);
   }, [search, status, complaints]);
 
+  /* =========================================================
+     DELETE COMPLAINT
+  ========================================================= */
+
   const handleDelete = async (id) => {
-    if (actionId) return;
-    const confirmPurge = window.confirm(
-      "Are you sure you want to permanently delete this complaint ledger node? This action is irreversible.",
+    if (actionId !== null) return;
+
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this complaint?",
     );
-    if (!confirmPurge) return;
+
+    if (!confirmDelete) return;
 
     try {
       setActionId(id);
+
       await deleteComplaint(id);
+
       await loadComplaints(true);
     } catch (err) {
-      console.error("Database deletion pipeline error:", err);
-      alert("Error dropping target complaint index line.");
+      console.error("Failed to delete complaint:", err);
+
+      alert("Failed to delete complaint.");
     } finally {
       setActionId(null);
     }
   };
+
+  /* =========================================================
+     ASSIGN COMPLAINT
+  ========================================================= */
 
   const handleAssign = async () => {
     if (!selectedStaff || !selectedComplaint) return;
@@ -120,7 +151,10 @@ function AdminComplaints() {
     try {
       setActionId(selectedComplaint);
 
-      await assignComplaintToStaff(selectedComplaint, Number(selectedStaff));
+      await assignComplaintToStaff(
+        selectedComplaint,
+        Number(selectedStaff),
+      );
 
       setShowAssignModal(false);
       setSelectedStaff("");
@@ -128,25 +162,29 @@ function AdminComplaints() {
 
       await loadComplaints(true);
     } catch (error) {
-      console.error("Assignment failed", error);
-      alert("Failed to assign complaint");
+      console.error("Failed to assign complaint:", error);
+
+      alert("Failed to assign complaint.");
     } finally {
       setActionId(null);
     }
   };
 
-  /**
-   * Helper: Find recommended staff based on the complaint's classification (category).
-   * It checks if the category matches the staff member's department, name, or role.
-   */
+  /* =========================================================
+     STAFF RECOMMENDATION
+  ========================================================= */
+
   const getRecommendation = (complaintCategory, staff) => {
     if (!complaintCategory || !staff) return false;
 
     const categoryLower = complaintCategory.toLowerCase();
-    const departmentLower = staff.department?.toLowerCase() || "";
-    const nameLower = staff.name?.toLowerCase() || "";
 
-    // Exact matches or substring matches (e.g., "IT" in "IT Support", "Hostel" in "Hostel Warden")
+    const departmentLower =
+      staff.department?.toLowerCase() || "";
+
+    const nameLower =
+      staff.name?.toLowerCase() || "";
+
     return (
       departmentLower.includes(categoryLower) ||
       categoryLower.includes(departmentLower) ||
@@ -154,39 +192,68 @@ function AdminComplaints() {
     );
   };
 
-  // When opening the modal, find the complaint object and try to pre-select matching staff
+  /* =========================================================
+     OPEN ASSIGN MODAL
+  ========================================================= */
+
   const openAssignModal = (complaint) => {
     setSelectedComplaint(complaint.id);
     setShowAssignModal(true);
 
-    // Look for any staff member matching this complaint's category/classification
     const recommendedStaff = staffList.find((staff) =>
       getRecommendation(complaint.category, staff),
     );
 
     if (recommendedStaff) {
-      setSelectedStaff(recommendedStaff.id);
+      setSelectedStaff(String(recommendedStaff.id));
     } else {
-      setSelectedStaff(""); // No match, reset to default select placeholder
+      setSelectedStaff("");
     }
   };
 
-  // Retrieve category text for the modal label if a complaint is active
-  const activeComplaintObj = complaints.find((c) => c.id === selectedComplaint);
+  /* =========================================================
+     CLOSE ASSIGN MODAL
+  ========================================================= */
+
+  const closeAssignModal = () => {
+    setShowAssignModal(false);
+    setSelectedStaff("");
+    setSelectedComplaint(null);
+  };
+
+  /* =========================================================
+     ACTIVE COMPLAINT
+  ========================================================= */
+
+  const activeComplaintObj = complaints.find(
+    (complaint) => complaint.id === selectedComplaint,
+  );
+
+  /* =========================================================
+     LOADING
+  ========================================================= */
 
   if (loading) {
     return <Loader text="Loading complaints..." />;
   }
 
+  /* =========================================================
+     UI
+  ========================================================= */
+
   return (
     <div className="admin-complaints-ledger-viewport">
-      {/* Upper Registry Heading Panel Block */}
+
+      {/* =====================================================
+          HEADER
+      ===================================================== */}
+
       <div className="ledger-header-panel">
         <div className="panel-identity">
-          <h1>Operations Ledger</h1>
+          <h1>Complaints</h1>
+
           <p>
-            Triage, routing allocation, and structural system audits for active
-            campus tickets
+            Manage and assign campus complaints
           </p>
         </div>
 
@@ -198,19 +265,32 @@ function AdminComplaints() {
         >
           <RefreshCw
             size={14}
-            className={syncing ? "complaints-sync-spinner" : ""}
+            className={
+              syncing ? "complaints-sync-spinner" : ""
+            }
           />
-          <span>{syncing ? "Syncing Grid..." : "Synchronize System"}</span>
+
+          <span>
+            {syncing ? "Refreshing..." : "Refresh"}
+          </span>
         </button>
       </div>
 
-      {/* Control Configuration Filtering Matrix Row Card */}
+      {/* =====================================================
+          FILTERS
+      ===================================================== */}
+
       <div className="ledger-filter-control-card">
+
         <div className="search-input-field-box">
-          <Search size={16} className="search-decor-icon" />
+          <Search
+            size={16}
+            className="search-decor-icon"
+          />
+
           <input
             type="text"
-            placeholder="Search matching titles or classification fields..."
+            placeholder="Search complaints..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             disabled={syncing}
@@ -223,107 +303,177 @@ function AdminComplaints() {
             onChange={(e) => setStatus(e.target.value)}
             disabled={syncing}
           >
-            <option value="">All Lifecycle Nodes</option>
+            <option value="">All Statuses</option>
             <option value="Open">Open</option>
             <option value="Assigned">Assigned</option>
-            <option value="In Progress">In Progress</option>
+            <option value="In Progress">
+              In Progress
+            </option>
             <option value="Resolved">Resolved</option>
             <option value="Closed">Closed</option>
           </select>
         </div>
+
       </div>
 
-      {/* Structured Ledger Data Layout Sheet Frame */}
+      {/* =====================================================
+          COMPLAINT TABLE
+      ===================================================== */}
+
       <div className="ledger-table-structural-card">
+
         {filtered.length === 0 ? (
           <div className="ledger-empty-records-box">
-            <Inbox size={44} className="empty-decor-icon" />
-            <h4>No Compliant Records Resolved</h4>
+
+            <Inbox
+              size={44}
+              className="empty-decor-icon"
+            />
+
+            <h4>No Complaints Found</h4>
+
             <p>
-              Adjust current telemetry filter matrices or sync structural data
-              array streams.
+              Try changing your search or status filter.
             </p>
+
           </div>
         ) : (
           <div className="table-overflow-containment-scroller">
+
             <table className="ledger-native-table">
+
               <thead>
                 <tr>
-                  <th>Grievance Statement / Title</th>
-                  <th>Classification</th>
-                  <th>Urgency Scale</th>
-                  <th>Workflow Node</th>
-                  <th>Allocated Operator</th>
-                  <th className="column-centered-header">System Operations</th>
+                  <th>Complaint</th>
+                  <th>Category</th>
+                  <th>Urgency</th>
+                  <th>Status</th>
+                  <th>Assigned Staff</th>
+                  <th className="column-centered-header">
+                    Actions
+                  </th>
                 </tr>
               </thead>
-              <tbody>
-                {filtered.map((item) => {
-                  const isRowLocked = actionId === item.id;
 
-                  const isAssigned = !!item.assigned_to;
-                  const operatorDisplayName = isAssigned
-                    ? typeof item.assigned_to === "object"
-                      ? item.assigned_to.name ||
-                        `Operator #${item.assigned_to.id}`
-                      : `Operator #${item.assigned_to}`
-                    : "Unallocated";
+              <tbody>
+
+                {filtered.map((item) => {
+
+                  const isRowLocked =
+                    actionId === item.id;
+
+                  const isAssigned =
+                    !!item.assigned_to;
+
+                  const operatorDisplayName =
+                    isAssigned
+                      ? typeof item.assigned_to ===
+                        "object"
+                        ? item.assigned_to.name ||
+                          `Staff #${item.assigned_to.id}`
+                        : `Staff #${item.assigned_to}`
+                      : "Not Assigned";
 
                   return (
                     <tr
                       key={item.id}
-                      className={isRowLocked ? "ledger-row-mutating-lock" : ""}
+                      className={
+                        isRowLocked
+                          ? "ledger-row-mutating-lock"
+                          : ""
+                      }
                     >
+
+                      {/* Complaint */}
+
                       <td className="column-payload-title">
-                        <span className="title-text-string">{item.title}</span>
-                      </td>
-                      <td>
-                        <span className="category-meta-string">
-                          {item.category || "Unclassified"}
+                        <span className="title-text-string">
+                          {item.title}
                         </span>
                       </td>
+
+                      {/* Category */}
+
+                      <td>
+                        <span className="category-meta-string">
+                          {item.category ||
+                            "Unclassified"}
+                        </span>
+                      </td>
+
+                      {/* Urgency */}
+
                       <td>
                         <span
-                          className={`urgency-badge urgency-${item.urgency?.toLowerCase() || "medium"}`}
+                          className={`urgency-badge urgency-${
+                            item.urgency?.toLowerCase() ||
+                            "medium"
+                          }`}
                         >
                           {item.urgency || "Normal"}
                         </span>
                       </td>
+
+                      {/* Status */}
+
                       <td>
                         <span
-                          className={`status-pill status-${item.status?.toLowerCase().replace(/\s+/g, "-") || "open"}`}
+                          className={`status-pill status-${
+                            item.status
+                              ?.toLowerCase()
+                              .replace(/\s+/g, "-") ||
+                            "open"
+                          }`}
                         >
-                          {item.status}
+                          {item.status || "Open"}
                         </span>
                       </td>
+
+                      {/* Assigned Staff */}
+
                       <td>
                         <span
-                          className={`operator-field-text ${isAssigned ? "bound" : "unallocated"}`}
+                          className={`operator-field-text ${
+                            isAssigned
+                              ? "bound"
+                              : "unallocated"
+                          }`}
                         >
                           {operatorDisplayName}
                         </span>
                       </td>
+
+                      {/* Actions */}
+
                       <td>
+
                         <div className="action-buttons-flex-row">
-                          {/* View Complaint Details */}
+
+                          {/* View */}
+
                           <button
                             type="button"
                             className="operational-action-btn view-btn"
-                            data-tooltip="View Complaint Details"
+                            data-tooltip="View Complaint"
                             onClick={() =>
-                              navigate(`/admin/complaints/${item.id}`)
+                              navigate(
+                                `/admin/complaints/${item.id}`,
+                              )
                             }
                             disabled={actionId !== null}
                           >
                             <FileText size={16} />
                           </button>
 
-                          {/* Assign Complaint */}
+                          {/* Assign */}
+
                           <button
                             type="button"
                             className="operational-action-btn assign-btn"
-                            data-tooltip="Assign Complaint To Staff"
-                            onClick={() => openAssignModal(item)}
+                            data-tooltip="Assign Complaint"
+                            onClick={() =>
+                              openAssignModal(item)
+                            }
                             disabled={actionId !== null}
                           >
                             {isRowLocked ? (
@@ -336,30 +486,46 @@ function AdminComplaints() {
                             )}
                           </button>
 
-                          {/* Delete Complaint */}
+                          {/* Delete */}
+
                           <button
                             type="button"
                             className="operational-action-btn delete-btn"
                             data-tooltip="Delete Complaint"
-                            onClick={() => handleDelete(item.id)}
+                            onClick={() =>
+                              handleDelete(item.id)
+                            }
                             disabled={actionId !== null}
                           >
                             <Trash2 size={16} />
                           </button>
+
                         </div>
+
                       </td>
+
                     </tr>
                   );
                 })}
+
               </tbody>
+
             </table>
+
           </div>
         )}
 
+        {/* =====================================================
+            ASSIGN STAFF MODAL
+        ===================================================== */}
+
         {showAssignModal && (
           <div className="assign-modal-overlay">
+
             <div className="assign-modal">
+
               <h3>Assign Complaint</h3>
+
               {activeComplaintObj?.category && (
                 <p
                   style={{
@@ -369,39 +535,57 @@ function AdminComplaints() {
                     marginBottom: "15px",
                   }}
                 >
-                  Classification: <strong>{activeComplaintObj.category}</strong>
+                  Category:{" "}
+                  <strong>
+                    {activeComplaintObj.category}
+                  </strong>
                 </p>
               )}
 
               <select
                 value={selectedStaff}
-                onChange={(e) => setSelectedStaff(e.target.value)}
+                onChange={(e) =>
+                  setSelectedStaff(e.target.value)
+                }
               >
-                <option value="">Select Staff</option>
+                <option value="">
+                  Select Staff
+                </option>
 
                 {staffList.map((staff) => {
-                  const isRecommended = getRecommendation(
-                    activeComplaintObj?.category,
-                    staff,
-                  );
+
+                  const isRecommended =
+                    getRecommendation(
+                      activeComplaintObj?.category,
+                      staff,
+                    );
+
                   return (
-                    <option key={staff.id} value={staff.id}>
-                      {staff.name}{" "}
-                      {staff.department ? `- ${staff.department}` : ""}
-                      {isRecommended ? " ⭐ (Recommended Match)" : ""}
+                    <option
+                      key={staff.id}
+                      value={staff.id}
+                    >
+                      {staff.name}
+
+                      {staff.department
+                        ? ` - ${staff.department}`
+                        : ""}
+
+                      {isRecommended
+                        ? " (Recommended)"
+                        : ""}
                     </option>
                   );
                 })}
+
               </select>
 
               <div className="modal-actions-wrapper">
+
                 <button
                   type="button"
                   className="modal-cancel-btn"
-                  onClick={() => {
-                    setShowAssignModal(false);
-                    setSelectedStaff("");
-                  }}
+                  onClick={closeAssignModal}
                 >
                   Cancel
                 </button>
@@ -414,11 +598,16 @@ function AdminComplaints() {
                 >
                   Assign
                 </button>
+
               </div>
+
             </div>
+
           </div>
         )}
+
       </div>
+
     </div>
   );
 }
