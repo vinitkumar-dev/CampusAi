@@ -17,7 +17,7 @@ function AIPredictionCard({ prediction }) {
     if (v === null || v === undefined || v === "") return null;
     const n = Number(v);
     if (!Number.isFinite(n) || n < 0 || n > 1) return null;
-    return Math.round(n * 1000) / 10; // one decimal, e.g. 62.2
+    return Number((n * 100).toFixed(2));
   };
 
   const categoryConfidence = toPercent(
@@ -42,7 +42,7 @@ function AIPredictionCard({ prediction }) {
 
         <div>
           <h2 id="ai-card-title">AI Prediction</h2>
-          <p>Powered by CampusAI Intelligence Engine</p>
+          <p>Powered by CampusAI</p>
         </div>
       </div>
 
@@ -112,7 +112,9 @@ function ConfidenceBar({ title, value, type }) {
     <div className="confidence-card">
       <div className="confidence-header">
         <span>{title}</span>
-        <strong>{value === null ? "Not available" : `${value}%`}</strong>
+        <strong>
+          {value == null ? "Not available" : `${value.toFixed(2)}%`}
+        </strong>
       </div>
 
       <div
