@@ -1,0 +1,266 @@
+/* ==========================================================
+   CAMPUS AI PREMIUM COMPLAINT TABLE
+========================================================== */
+
+:root {
+  --text-main: #0f172a;
+  --text-sub: #64748b;
+  --border-table: #e2e8f0;
+  --bg-hover: #f8fafc;
+  --transition-speed: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Urgency Palette */
+  --high-bg: #fef2f2;
+  --high-text: #ef4444;
+  --medium-bg: #fff7ed;
+  --medium-text: #f97316;
+  --low-bg: #f0fdf4;
+  --low-text: #22c55e;
+}
+
+.complaint-table-container {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--border-table);
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.02);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.complaint-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+/* ==========================================================
+   HEADERS
+========================================================== */
+
+.complaint-table th {
+  background: #f8fafc;
+  padding: 14px 20px;
+  font-weight: 600;
+  color: var(--text-sub);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border-table);
+}
+
+.complaint-table th.text-right {
+  text-align: right;
+}
+
+/* ==========================================================
+   ROWS & CELLS
+========================================================== */
+
+.complaint-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-table);
+  color: var(--text-main);
+  vertical-align: middle;
+}
+
+.complaint-table tbody tr {
+  transition: background-color var(--transition-speed);
+}
+
+.complaint-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.complaint-table tbody tr:hover {
+  background-color: var(--bg-hover);
+}
+
+/* ==========================================================
+   COLUMN STYLINGS
+========================================================== */
+
+.complaint-id {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 600;
+  color: #4f46e5;
+  background: #f5f3ff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+}
+
+.complaint-title {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-width: 280px;
+}
+
+.complaint-title strong {
+  font-weight: 600;
+  color: var(--text-main);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.complaint-title span {
+  font-size: 0.8rem;
+  color: var(--text-sub);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.table-date {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+}
+
+/* ==========================================================
+   URGENCY BADGES
+========================================================== */
+
+.urgency-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.urgency-badge.high {
+  background: var(--high-bg);
+  color: var(--high-text);
+}
+
+.urgency-badge.medium {
+  background: var(--medium-bg);
+  color: var(--medium-text);
+}
+
+.urgency-badge.low {
+  background: var(--low-bg);
+  color: var(--low-text);
+}
+
+/* ==========================================================
+   ACTION BUTTONS
+========================================================== */
+
+.action-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.table-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-table);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--text-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.table-btn:hover {
+  color: var(--text-main);
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.table-btn.view:hover {
+  color: #4f46e5;
+  background: #f5f3ff;
+  border-color: #c7d2fe;
+}
+
+.table-btn.edit:hover {
+  color: #0284c7;
+  background: #f0f9ff;
+  border-color: #bae6fd;
+}
+
+.table-btn.delete:hover {
+  color: #ef4444;
+  background: #fef2f2;
+  border-color: #fee2e2;
+}
+
+/* ==========================================================
+   EMPTY STATE STYLING
+========================================================== */
+
+.empty-row {
+  padding: 0 !important;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 20px;
+  text-align: center;
+}
+
+.empty-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #f8fafc;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.empty-state h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.empty-state p {
+  margin: 6px 0 0 0;
+  font-size: 0.88rem;
+  color: var(--text-sub);
+  max-width: 320px;
+}
+
+/* ==========================================================
+   RESPONSIVE OVERRIDES
+========================================================== */
+
+@media (max-width: 640px) {
+  .complaint-table th:nth-child(4),
+  .complaint-table td:nth-child(4),
+  .complaint-table th:nth-child(6),
+  .complaint-table td:nth-child(6) {
+    display: none;
+  }
+}

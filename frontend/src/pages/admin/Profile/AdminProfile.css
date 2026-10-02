@@ -1,0 +1,327 @@
+/* ==========================================================
+   CAMPUS AI PREMIUM ADMINISTRATION IDENTITY CONFIG PANEL
+========================================================== */
+
+:root {
+  --text-main: #0f172a;
+  --text-sub: #64748b;
+  --border-element: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-panel: #f8fafc;
+  --primary-indigo: #4f46e5;
+  --primary-hover: #4338ca;
+  --focus-ring: rgba(79, 70, 229, 0.15);
+  --transition-speed: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Shared Accent Registry variables mapping */
+  --b-core: #3b82f6;
+  --b-bg: #eff6ff;
+  --b-edge: #bfdbfe;
+  --i-core: #6366f1;
+  --i-bg: #e0e7ff;
+  --i-edge: #c7d2fe;
+}
+
+.admin-profile-root-viewport {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================
+   UPPER MAINFRAME IDENTITY AND CONTROL STRIP INTERFACE
+========================================================== */
+
+.profile-identity-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border-element);
+  margin-bottom: 32px;
+  gap: 16px;
+}
+
+.profile-identity-panel .identity-meta-stack h1 {
+  margin: 0;
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.profile-identity-panel .identity-meta-stack p {
+  margin: 6px 0 0 0;
+  font-size: 0.9rem;
+  color: var(--text-sub);
+}
+
+/* ==========================================================
+   PRIMARY DATA CARD MODULE COMPOSITE
+========================================================== */
+
+.profile-composite-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-element);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.01);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ==========================================================
+   AVATAR IDENTITY SELECTION NODE MODULE
+========================================================== */
+
+.profile-avatar-node-section {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  border-bottom: 1px solid var(--border-element);
+  padding-bottom: 28px;
+}
+
+.profile-avatar-bounding-shield {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-element);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.profile-avatar-bounding-shield img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-fallback-decor-icon {
+  color: #94a3b8;
+}
+
+.avatar-upload-trigger-btn {
+  background: #ffffff;
+  border: 1px solid var(--border-element);
+  color: #475569;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all var(--transition-speed);
+}
+
+.avatar-upload-trigger-btn:hover {
+  background: var(--bg-panel);
+  border-color: #cbd5e1;
+  color: var(--text-main);
+}
+
+/* ==========================================================
+   TELEMETRY INTERACTIVE REGISTRATION INPUT MATRIX
+========================================================== */
+
+.profile-telemetry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.telemetry-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.telemetry-form-group.full-width-span {
+  grid-column: 1 / -1;
+}
+
+.form-group-label-string {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.form-group-label-string svg {
+  color: var(--text-sub);
+}
+
+.form-input-field-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.telemetry-interactive-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid var(--border-element);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-main);
+  outline: none;
+  transition: all var(--transition-speed);
+}
+
+.telemetry-interactive-input:focus {
+  border-color: var(--primary-indigo);
+  box-shadow: 0 0 0 4px var(--focus-ring);
+  background: #ffffff;
+}
+
+.telemetry-interactive-input::placeholder {
+  color: #94a3b8;
+}
+
+/* Disabled Input Form State Layout Overrides */
+.telemetry-form-group.field-disabled .telemetry-interactive-input {
+  background: var(--bg-panel);
+  color: #64748b;
+  border-color: var(--border-element);
+  cursor: not-allowed;
+  font-weight: 500;
+}
+
+/* Large-form Textarea Allocation Fields */
+.telemetry-interactive-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid var(--border-element);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-main);
+  outline: none;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.5;
+  transition: all var(--transition-speed);
+}
+
+.telemetry-interactive-textarea:focus {
+  border-color: var(--primary-indigo);
+  box-shadow: 0 0 0 4px var(--focus-ring);
+}
+
+.telemetry-interactive-textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* ==========================================================
+   BOTTOM STRIP CONTROL TRIGGER SYSTEM FOR COMMIT DISPATCHES
+========================================================== */
+
+.profile-control-commit-strip {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-top: 1px solid var(--border-element);
+  padding-top: 24px;
+  margin-top: 8px;
+}
+
+.profile-save-trigger-btn {
+  background: var(--primary-indigo);
+  border: 1px solid transparent;
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(79, 70, 229, 0.1);
+  transition: all var(--transition-speed);
+}
+
+.profile-save-trigger-btn:hover:not(:disabled) {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}
+
+.profile-save-trigger-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ==========================================================
+   GLOBAL VIEWPORT TIMEOUT LOADERS INTERCEPT
+========================================================== */
+
+.profile-loading-viewport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 24px;
+  gap: 16px;
+}
+
+.profile-spin-loader {
+  animation: profile-spin-kf 0.8s linear infinite;
+  color: var(--primary-indigo);
+}
+
+.profile-loading-viewport h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-sub);
+}
+
+@keyframes profile-spin-kf {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE DESIGN BREAKPOINT RECONFIGURATIONS
+========================================================== */
+
+@media (max-width: 768px) {
+  .profile-telemetry-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .profile-composite-card {
+    padding: 24px;
+  }
+
+  .profile-avatar-node-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .profile-save-trigger-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

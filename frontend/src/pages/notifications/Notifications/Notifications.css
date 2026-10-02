@@ -1,0 +1,332 @@
+/* ==========================================================
+   CAMPUS AI PREMIUM BROADCST & ALERTS CORE MANAGEMENT CSS
+========================================================== */
+
+:root {
+  --text-main: #0f172a;
+  --text-sub: #64748b;
+  --border-element: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-panel: #f8fafc;
+  --primary-indigo: #4f46e5;
+  --primary-hover: #4338ca;
+  --focus-ring: rgba(79, 70, 229, 0.15);
+  --transition-speed: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.notifications-page-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================
+   DASHBOARD CONTEXT SYNC ROW HEADER SECTION
+========================================================== */
+
+.notification-dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border-element);
+  margin-bottom: 32px;
+}
+
+.header-meta-group h1 {
+  margin: 0;
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.unread-counter-badge {
+  margin: 6px 0 0 0;
+  font-size: 0.9rem;
+  color: var(--text-sub);
+  font-weight: 500;
+}
+
+/* Feed Sync Network Actions Toggle Button */
+.refresh-sync-btn {
+  background: #ffffff;
+  border: 1px solid var(--border-element);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: all var(--transition-speed);
+}
+
+.refresh-sync-btn:hover:not(:disabled) {
+  background: var(--bg-panel);
+  border-color: #cbd5e1;
+  color: var(--text-main);
+}
+
+.refresh-sync-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==========================================================
+   STACK STYLING AND INDIVIDUAL ITEM INJECT CARDS
+========================================================== */
+
+.notifications-stack-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.notification-item-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-element);
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.01);
+  transition: all var(--transition-speed);
+  position: relative;
+}
+
+/* Dynamic State Variants based on authorization context reading */
+.notification-item-card.is-unread {
+  border-left: 4px solid var(--primary-indigo);
+  background: linear-gradient(to right, #fbfbfe, #ffffff);
+}
+
+.notification-item-card.is-read {
+  opacity: 0.8;
+}
+
+.notification-item-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+}
+
+/* Column 1: Status Icon Bullet Framework */
+.notification-status-indicator-col {
+  flex-shrink: 0;
+}
+
+.is-unread .badge-bullet-icon {
+  background: #e0e7ff;
+  color: var(--primary-indigo);
+}
+
+.is-read .badge-bullet-icon {
+  background: var(--bg-panel);
+  color: #94a3b8;
+}
+
+.badge-bullet-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-speed);
+}
+
+/* Column 2: Data Payload Meta Copy Texts */
+.notification-payload-content-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.payload-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+.is-read .payload-title {
+  font-weight: 600;
+  color: #334155;
+}
+
+.payload-description {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.is-read .payload-description {
+  color: var(--text-sub);
+}
+
+.payload-timestamp-metric {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* Column 3: Interactive Persistence Actions */
+.notification-interactive-actions-col {
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.commit-read-action-btn {
+  background: #ffffff;
+  border: 1px solid var(--border-element);
+  color: #475569;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.commit-read-action-btn:hover:not(:disabled) {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #166534;
+}
+
+.commit-read-action-btn:disabled {
+  background: var(--bg-panel);
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* ==========================================================
+   VIEWPORT LOADING AND ZERO SYSTEM ALERTS LAYOUTS
+========================================================== */
+
+.notifications-loading-viewport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 24px;
+  gap: 16px;
+  text-align: center;
+}
+
+.global-feed-spin {
+  animation: feed-spin-keyframes 0.8s linear infinite;
+  color: var(--primary-indigo);
+}
+
+.notifications-loading-viewport h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-sub);
+  margin: 0;
+}
+
+/* Zero Notifications Empty Display UI Panel */
+.empty-notification-viewport {
+  background: var(--bg-panel);
+  border: 1px dashed var(--border-element);
+  border-radius: 20px;
+  padding: 80px 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  margin: 40px auto;
+}
+
+.empty-icon-shield {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid var(--border-element);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+}
+
+.empty-notification-viewport h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.empty-notification-viewport p {
+  margin: 8px 0 0 0;
+  font-size: 0.9rem;
+  color: var(--text-sub);
+  line-height: 1.5;
+}
+
+/* ==========================================================
+   ASYNC SPIN TRANSITIONS KEYFRAMES DECLARATION
+========================================================== */
+
+@keyframes feed-spin-keyframes {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================
+   BREAKPOINTS RESPONSIVE DESIGN VIEWPORT LAYOUTS
+========================================================== */
+
+@media (max-width: 768px) {
+  .notification-item-card {
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .notification-status-indicator-col {
+    display: none; /* Strip decorative layers on mobile to save context rows space */
+  }
+
+  .notification-interactive-actions-col {
+    width: 100%;
+    margin-top: 4px;
+  }
+
+  .commit-read-action-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .notification-dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .refresh-sync-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

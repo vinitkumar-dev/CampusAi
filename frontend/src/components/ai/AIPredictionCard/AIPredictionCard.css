@@ -1,0 +1,256 @@
+/* ==========================================================
+   CAMPUS AI PREMIUM AI PREDICTION CARD
+========================================================== */
+
+:root {
+  --text-main: #0f172a;
+  --text-sub: #64748b;
+  --border-card: #e2e8f0;
+  --ai-purple: #7c3aed;
+  --ai-blue: #3b82f6;
+  --transition-speed: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ai-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid var(--border-card);
+  border-radius: 20px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  overflow: hidden;
+  box-sizing: border-box;
+  box-shadow: 0 4px 24px rgba(124, 58, 237, 0.03);
+}
+
+/* Ambient Purple & Blue AI Background Glows */
+.ai-glow {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(60px);
+  opacity: 0.04;
+  z-index: 0;
+}
+
+.ai-glow-one {
+  top: -100px;
+  left: -100px;
+  background: radial-gradient(
+    circle,
+    var(--ai-purple) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+}
+
+.ai-glow-two {
+  bottom: -100px;
+  right: -100px;
+  background: radial-gradient(
+    circle,
+    var(--ai-blue) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+}
+
+/* ==========================================================
+   HEADER SECTION
+========================================================== */
+
+.ai-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ai-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--ai-purple), var(--ai-blue));
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 16px rgba(124, 58, 237, 0.15);
+}
+
+.ai-header h2 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+.ai-header p {
+  margin: 4px 0 0 0;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+}
+
+/* ==========================================================
+   PREDICTION GRID LAYOUT
+========================================================== */
+
+.prediction-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 11fr);
+  gap: 16px;
+}
+
+.prediction-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: #f8fafc;
+  border: 1px solid var(--border-card);
+  border-radius: 14px;
+  box-sizing: border-box;
+}
+
+.item-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid var(--border-card);
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0; /* Prevents long titles/values from stretching layouts */
+}
+
+.item-content span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-sub);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.item-content h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Urgency Card Variations */
+.prediction-item.urgency-card.high {
+  background: #fef2f2;
+  border-color: #fee2e2;
+}
+.prediction-item.urgency-card.high .item-icon {
+  color: #ef4444;
+  border-color: #fca5a5;
+  background: #ffffff;
+}
+.prediction-item.urgency-card.high h3 {
+  color: #dc2626;
+}
+
+.prediction-item.urgency-card.medium {
+  background: #fff7ed;
+  border-color: #ffedd5;
+}
+.prediction-item.urgency-card.medium .item-icon {
+  color: #ea580c;
+  border-color: #fdba74;
+  background: #ffffff;
+}
+.prediction-item.urgency-card.medium h3 {
+  color: #c2410c;
+}
+
+/* ==========================================================
+   CONFIDENCE PROGRESS BARS
+========================================================== */
+
+.confidence-section {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.confidence-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.confidence-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.88rem;
+}
+
+.confidence-header span {
+  font-weight: 600;
+  color: #334155;
+}
+
+.confidence-header strong {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.progress {
+  width: 100%;
+  height: 8px;
+  background: #f1f5f9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-fill.category {
+  background: linear-gradient(90deg, #a78bfa, var(--ai-purple));
+}
+
+.progress-fill.urgency {
+  background: linear-gradient(90deg, #60a5fa, var(--ai-blue));
+}
+
+/* ==========================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+========================================================== */
+
+@media (max-width: 640px) {
+  .ai-card {
+    padding: 24px 20px;
+    gap: 20px;
+  }
+
+  .prediction-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}

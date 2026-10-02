@@ -1,0 +1,140 @@
+/* ==========================================================
+   CAMPUS AI PREMIUM ANALYTICS CHARTS SYSTEM
+========================================================== */
+
+:root {
+  --text-main: #0f172a;
+  --text-sub: #64748b;
+  --border-card: #e2e8f0;
+  --bg-card: #ffffff;
+  --transition-speed: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.charts-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ==========================================================
+   CHART CARD WRAPPER
+========================================================== */
+
+.chart-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 16px;
+  padding: 24px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.015);
+  transition:
+    transform var(--transition-speed),
+    box-shadow var(--transition-speed);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chart-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -4px rgba(15, 23, 42, 0.04);
+}
+
+/* Modifier layout rule for widescreen trends */
+.chart-card.full-width {
+  grid-column: span 2;
+}
+
+.chart-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================
+   CUSTOM PREMIUM TOOLTIP COMPONENT STYLE
+========================================================== */
+
+.custom-chart-tooltip {
+  background: rgba(15, 23, 42, 0.95) !important;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 10px 14px !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.tooltip-label {
+  margin: 0 0 6px 0 !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  color: #94a3b8 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.tooltip-value {
+  margin: 0 !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #f8fafc !important;
+}
+
+.tooltip-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* ==========================================================
+   RECHARTS OVERRIDES & ACCESSIBILITY FIXES
+========================================================== */
+
+.recharts-default-legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px !important;
+}
+
+.recharts-legend-item {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 4px;
+}
+
+.recharts-legend-item-text {
+  color: var(--text-sub) !important;
+  font-weight: 500;
+}
+
+/* ==========================================================
+   RESPONSIVE LAYOUT RESPONSES
+========================================================== */
+
+@media (max-width: 1024px) {
+  .chart-card.full-width {
+    grid-column: span 1;
+  }
+  .charts-container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+}
