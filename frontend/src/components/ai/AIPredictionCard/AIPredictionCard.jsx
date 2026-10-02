@@ -11,8 +11,6 @@ import "./AIPredictionCard.css";
 function AIPredictionCard({ prediction }) {
   if (!prediction) return null;
 
-  // Real model probability (0..1) -> percentage. Missing/invalid -> null,
-  // which renders as "Not available" (never a fabricated number).
   const toPercent = (v) => {
     if (v === null || v === undefined || v === "") return null;
     const n = Number(v);
@@ -34,7 +32,6 @@ function AIPredictionCard({ prediction }) {
       <div className="ai-glow ai-glow-one" aria-hidden="true"></div>
       <div className="ai-glow ai-glow-two" aria-hidden="true"></div>
 
-      {/* Header */}
       <div className="ai-header">
         <div className="ai-icon" aria-hidden="true">
           <Sparkles size={24} />
@@ -46,7 +43,6 @@ function AIPredictionCard({ prediction }) {
         </div>
       </div>
 
-      {/* Prediction Data Grid */}
       <div className="prediction-grid">
         <PredictionItem
           icon={<Layers3 size={18} />}
@@ -74,7 +70,6 @@ function AIPredictionCard({ prediction }) {
         />
       </div>
 
-      {/* Confidence Metrics */}
       <div className="confidence-section">
         <ConfidenceBar
           title="Category Confidence"
